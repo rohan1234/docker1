@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:docker_app/models/Docker.dart';
+import 'package:docker_app/screens/popitem.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:http/http.dart';
@@ -57,15 +58,34 @@ class RunOutState extends State<RunOut> {
       body: Container(
         height: MediaQuery.of(context).size.height * 0.4,
         child: Card(
-            child: Column(
+            child:
+            Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    PopupMenuButton<String>(
+                    onSelected: choiceAction,
+                    itemBuilder: (BuildContext context){
+                    return Popitem.choices.map((String choice)
+                    {
+                      return PopupMenuItem<String>(
+                        value: choice,
+                        child: Text(choice),
+                      );
+                    }
+                    ).toList();
+                  },
+            )],
+                ),
                 Row(
                   children: [
                     Text("Container Name"),
                     SizedBox(height: 20,),
                     Text(con.name),
-                  ],
+                   ],
                 ),
                 Row(
                   children: [
@@ -92,4 +112,14 @@ class RunOutState extends State<RunOut> {
       ),
     );
   }
+}
+void choiceAction(String choices){
+  if(choices==Popitem.Remove)
+    {
+      debugPrint("you click on remove");
+    }
+  else if (choices==Popitem.Logs)
+    {
+      debugPrint("you click on logs");
+    }
 }

@@ -1,3 +1,4 @@
+import 'package:docker_app/screens/shell.dart';
 import 'package:docker_app/screens/status.dart';
 import 'package:docker_app/screens/stop.dart';
 import 'package:flutter/cupertino.dart';
@@ -19,6 +20,18 @@ class Home extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             title: Text("Docker Controller"),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.computer_outlined),
+                tooltip: 'Linux Shell',
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Shell()));
+                },
+              ),
+            ],
             backgroundColor: Colors.black,
             centerTitle: true,
             elevation: 0,

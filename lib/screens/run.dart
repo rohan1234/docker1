@@ -21,7 +21,6 @@ class _RunState extends State<Run> {
         Navigator.push(
             context,
             MaterialPageRoute(
-              
                 builder: (context) => RunOut(image:imageName.text,name:containerName.text)));
       },
         shape: Vx.withRounded(10),
